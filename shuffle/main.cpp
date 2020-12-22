@@ -14,7 +14,6 @@ public:
     }
 };
 
-
 int main(){
     vector<int> input;
     input.push_back(2);
