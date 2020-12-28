@@ -1,6 +1,7 @@
 //Definition for a binary tree node.
 #include <iostream>
 #include <deque>
+#include <stack>
 using namespace std;
 
 struct TreeNode {
@@ -97,6 +98,20 @@ int kth_min(TreeNode* root, int k){
     return kth_min ;
 }
 
+int kth_min_iterative(TreeNode* root, int k){
+    stack<TreeNode*> stack;
+    while(true){
+        while(root!=nullptr){
+            stack.push(root);
+            root = root->left;
+        }
+        root = stack.top();
+        stack.pop();
+        if(--k==0) return root->val;
+        root = root->right;
+    }
+}
+
 int main(){
     int keys [] = {5,3,6,2,4,1};
     //int keys [] = {1,2,3,4,5,6};
@@ -111,6 +126,7 @@ int main(){
     //delete_tree(root);
     for(int i = 1; i <= sizeof(keys)/sizeof(*keys); i++){
         cout << i << " th min is: " << kth_min(root, i) << endl;
+        cout << i << " th min (iterative) is: " << kth_min_iterative(root, i) << endl;
     }
     return 0;
 }
