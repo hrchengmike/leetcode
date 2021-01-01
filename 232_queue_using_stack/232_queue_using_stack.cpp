@@ -5,13 +5,11 @@ class MyQueue {
 private:
     deque<int> s1;
     deque<int> s2;
-    int state; //is 1 if all elements are in s1, vice versa
     int front; //stores the first element
     
 public:
     /** Initialize your data structure here. */
     MyQueue() {
-        state = 1;
     }
     
     /** Returns whether the queue is empty. */
@@ -25,19 +23,9 @@ public:
         if(empty()){
             s1.push_back(x);
             front = x;
-            state = 1;
             return;
         }
-        //not empty, two option, either all in s1 or s2
-        if(state == 2) {
-            while(!s2.empty()){
-                int temp = s2.back();
-                s2.pop_back();
-                s1.push_back(temp);
-            }
-        }
         s1.push_back(x);
-        state = 1;
     }
     
     
@@ -49,7 +37,7 @@ public:
             return 10;
         }
         //not empty, two option, either all in s1 or s2
-        if(state == 1) {
+        if(s2.empty()) {
             while(!s1.empty()){
                 int temp = s1.back();
                 s1.pop_back();
@@ -58,8 +46,16 @@ public:
         }
         int temp = s2.back();
         s2.pop_back();
-        if(!empty()) front = s2.back();
-        state = 2;
+        if(!s2.empty()) {
+            front = s2.back();
+        } else if(!s1.empty()){
+            while(!s1.empty()){
+                int temp = s1.back();
+                s1.pop_back();
+                s2.push_back(temp);
+            }
+            front = s2.back();   
+        } 
         return temp;
     }
     
@@ -77,7 +73,14 @@ public:
 int main(){
     MyQueue* obj = new MyQueue();
     obj->push(1);
+    obj->push(2);
+    obj->push(3);
+    obj->push(4);
+    int param_1 = obj->pop();
+    obj->push(5);
     int param_2 = obj->pop();
-    bool param_4 = obj->empty();
+    int param_3 = obj->pop();
+    int param_4 = obj->pop();
+    int param_5 = obj->pop();
     return 0;
 }
