@@ -56,10 +56,11 @@ public:
             } 
         }
         if(min_num!=-1) {
-            cout << "memoize amount: "<< amount << " num: "<< min_num+1 << endl;
+            //cout << "memoize amount: "<< amount << " num: "<< min_num+1 << endl;
             dict[amount] = min_num+1;
             return min_num+1;
         } else {
+            dict[amount] = -1;
             return -1;
         }
     }
@@ -68,9 +69,7 @@ public:
 int main(){
     Solution s;
     //vector<int> coins = {1, 2, 5, 10, 20, 50};
-    //vector<int> coins = {186,419,83,408};
-    //test 6249
-    vector<int> coins = {83, 186, 408, 419};
+    vector<int> coins = {83, 186, 408, 419};//test 6249, expected 20
     int amount;
     cout << "please input amount:\n";
     cin >> amount;
