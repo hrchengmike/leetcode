@@ -39,13 +39,13 @@ public:
     }
 
     int coinChange2(vector<int>& coins, int amount){
-        map<int, int> dict;
+        int dict [amount+1] = {};
         return coinChange2_dict(coins, amount, dict);
     }
-    int coinChange2_dict(vector<int>& coins, int amount, map<int, int>& dict) {
+    int coinChange2_dict(vector<int>& coins, int amount, int dict []) {
         if(amount == 0) return 0;
         if(amount < 0) return -1;
-        if(dict.count(amount)==1) return dict[amount];
+        if(dict[amount]!=0) return dict[amount];
 
         int min_num = -1;
         for (int i = 0; i < coins.size(); i++){
@@ -67,7 +67,10 @@ public:
 
 int main(){
     Solution s;
-    vector<int> coins = {1, 2, 5};
+    //vector<int> coins = {1, 2, 5, 10, 20, 50};
+    //vector<int> coins = {186,419,83,408};
+    //test 6249
+    vector<int> coins = {83, 186, 408, 419};
     int amount;
     cout << "please input amount:\n";
     cin >> amount;
