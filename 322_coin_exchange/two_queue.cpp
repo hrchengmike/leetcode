@@ -2,6 +2,7 @@
 #include <vector>
 #include <deque>
 #include <algorithm>
+#include <map>
 using namespace std;
 
 class Solution {
@@ -36,6 +37,32 @@ public:
         }
         return -1;
     }
+
+    int coinChange2(vector<int>& coins, int amount){
+        map<int, int> dict;
+        return coinChange2_dict(coins, amount, dict);
+    }
+    int coinChange2_dict(vector<int>& coins, int amount, map<int, int>& dict) {
+        if(amount == 0) return 0;
+        if(amount < 0) return -1;
+        if(dict.count(amount)==1) return dict[amount];
+
+        int min_num = -1;
+        for (int i = 0; i < coins.size(); i++){
+            int rest = amount - coins[i];
+            int num = coinChange2_dict(coins, rest, dict);
+            if (num >= 0 && (min_num == -1 || num < min_num)){
+                min_num = num;
+            } 
+        }
+        if(min_num!=-1) {
+            cout << "memoize amount: "<< amount << " num: "<< min_num+1 << endl;
+            dict[amount] = min_num+1;
+            return min_num+1;
+        } else {
+            return -1;
+        }
+    }
 };
 
 int main(){
@@ -44,6 +71,6 @@ int main(){
     int amount;
     cout << "please input amount:\n";
     cin >> amount;
-    cout << "#of coins: "<<s.coinChange(coins, amount) << endl;
+    cout << "#of coins: "<<s.coinChange2(coins, amount) << endl;
     return 0;
 }
