@@ -2,16 +2,8 @@
 #include <iostream>
 #include <deque>
 #include <stack>
+#include "../bst.h"
 using namespace std;
-
-struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode() : val(0), left(nullptr), right(nullptr) {}
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-    TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
-};
 
 class Solution {
 public:
@@ -58,6 +50,7 @@ void delete_tree (TreeNode* root){
     }
 }
 
+//in order print of all node's val of a tree
 void print_tree(TreeNode* node){
     if(node->left != nullptr) print_tree(node->left);
     cout << "node in tree: " << node->val << endl;
