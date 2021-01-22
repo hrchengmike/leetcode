@@ -12,51 +12,6 @@ public:
     }
 };
 
-//insert a node to the current BST 
-//return true if success
-bool insert_node( TreeNode* root, int key){
-    TreeNode* cur = root;
-    while (true){
-        if (key < cur->val){
-            if (cur->left == nullptr){
-                TreeNode* node = new TreeNode(key);
-                cur -> left = node;
-                return true;
-            }
-            cur = cur->left;
-        } else if (key > cur->val){
-            if (cur->right == nullptr){
-                TreeNode* node = new TreeNode(key);
-                cur -> right = node;
-                return true;
-            }
-            cur = cur->right;
-        } else {
-            cout << "The key value is already in the tree!\n";
-            return false;
-        }
-    }
-}
-
-void delete_tree (TreeNode* root){
-    deque <TreeNode*> q;
-    q.push_back(root);
-    while(!q.empty()){
-        TreeNode* cur = q.front();
-        q.pop_front();
-        if(cur->left!=nullptr) q.push_back(cur->left);
-        if(cur->right!=nullptr)q.push_back(cur->right);
-        delete cur;
-    }
-}
-
-//in order print of all node's val of a tree
-void print_tree(TreeNode* node){
-    if(node->left != nullptr) print_tree(node->left);
-    cout << "node in tree: " << node->val << endl;
-    if(node->right != nullptr) print_tree(node->right);
-}
-
 TreeNode* min_node(TreeNode* root){
     TreeNode* cur = root;
     while(cur -> left!= nullptr){
