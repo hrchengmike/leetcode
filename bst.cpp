@@ -85,3 +85,18 @@ void print_tree(TreeNode* node){
     cout << "node in tree: " << node->val << endl;
     if(node->right != nullptr) print_tree(node->right);
 }
+
+//finds the node that has value val, assume all node values in the tree distinct
+//returns pointer to the node, returns nullptr if not found
+TreeNode* find_node(TreeNode* root, int val){
+    deque<TreeNode*> q;
+    q.push_back(root);
+    while(!q.empty()){
+        TreeNode* cur = q.front();
+        q.pop_front();
+        if(cur -> val == val) return cur;
+        if(cur -> left != nullptr) q.push_back(cur -> left);
+        if(cur -> right != nullptr) q.push_back(cur -> right);
+    }
+    return nullptr;
+}

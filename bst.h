@@ -13,3 +13,4 @@ TreeNode* init_tree(int vals [], int length);
 bool insert_node( TreeNode* root, int key);
 void delete_tree (TreeNode* root);
 void print_tree(TreeNode* node);
+TreeNode* find_node(TreeNode* root, int val);
