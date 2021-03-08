@@ -32,6 +32,9 @@ public:
         }
         return max_layer;
     }
+    int maxDepth_recursion(TreeNode* root) {
+        return root?(max(maxDepth_recursion(root->left),maxDepth_recursion(root->right))+1):0;
+    }
 };
 
 int main(){
@@ -40,4 +43,5 @@ int main(){
     print_tree(root);
     Solution s;
     cout << "max_depth: " << s.maxDepth(root) << endl;
+    cout << "max_depth(recursion): " << s.maxDepth_recursion(root) << endl;
 }
