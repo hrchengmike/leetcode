@@ -3,6 +3,7 @@
 #include <deque>
 using namespace std;
 //this function initialize a tree based on an array of positive integer node vals(can contain 0 which is null)
+//The order of array is level order traversal
 TreeNode* init_tree(int vals [], int length){
     deque<TreeNode*> q;
     TreeNode* root = new TreeNode(vals[0]);
@@ -80,6 +81,7 @@ void delete_tree (TreeNode* root){
     }
 }
 
+//In order traversal of all elements
 void print_tree(TreeNode* node){
     if(node->left != nullptr) print_tree(node->left);
     cout << "node in tree: " << node->val << endl;
