@@ -13,3 +13,4 @@
 ### Above combination will ignore all files without extension ###
 *.vscode
 *.o
+aurora/*
